@@ -1,10 +1,10 @@
 import { defineConfig } from '@rspack/cli';
-import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
+// import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 import { rspack } from '@rspack/core';
-import { isProd,  resolve, getCSSModuleRules } from './helper.mjs';
+import { isProd,  resolve,subDir, getCSSModuleRules } from './helper.mjs';
 import { ENV, Polyfill } from './config.mjs';
 
-const { HtmlRspackPlugin } = rspack;
+const { HtmlRspackPlugin,CopyRspackPlugin } = rspack;
 
 const base = defineConfig({
   target: 'web',
@@ -13,8 +13,8 @@ const base = defineConfig({
   },
   output: {
     clean: true,
-    path: resolve('dist'),
-    publicPath: ENV[process.env.BUILD_ENV].PUBLIC_PATH,
+    path: resolve(ENV[process.env.NODE_ENV].PATH),
+    publicPath: ENV[process.env.NODE_ENV].PUBLIC_PATH,
     filename: '[name].js',
   },
   resolve: {
@@ -35,7 +35,7 @@ const base = defineConfig({
     rules: [
       {
         test: /\.js[x]?$/,
-        include: [resolve('./src'), resolve('./demos')],
+        include: [resolve('./src')],
         use: [
           {
             loader: 'builtin:swc-loader',
@@ -60,8 +60,10 @@ const base = defineConfig({
               rspackExperiments: {
                 import: [
                   {
-                    libraryName: 'antd',
-                    style: '{{member}}/style/index.css',
+                    libraryName: '@arco-design/web-react',
+                    libraryDirectory: 'es',
+                    style: true,
+                    camel2DashComponentName: false
                   },
                 ],
               },
@@ -73,25 +75,28 @@ const base = defineConfig({
     ],
   },
   plugins: [
+    new CopyRspackPlugin({
+      patterns: [
+        {
+          from: resolve('/public'),
+          to: subDir('/'),
+        },
+      ],
+    }),
     new HtmlRspackPlugin({
       template: resolve(`/index.html`),
       filename: `index.html`,
       minify: true,
     }),
-    new ModuleFederationPlugin({
-      name: 'federation_provider',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './button': resolve('./src/button/index.jsx'),
-        './mf': resolve('./src/mf.js'),
-      },
-      shared: {
-        react: { singleton: true, requiredVersion: '^18.0.0' },
-        'react-dom': { singleton: true, requiredVersion: '^18.0.0' },
-      },
-      dts: false,
-      // getPublicPath: `return "//" + window.location.host + "/federation_provider"`,
-    }),
+    // new ModuleFederationPlugin({
+    //   name: 'federation_provider',
+    //   filename: 'remoteEntry.js',
+    //   shared: {
+    //     react: { singleton: true, requiredVersion: '^18.0.0' },
+    //     'react-dom': { singleton: true, requiredVersion: '^18.0.0' },
+    //   },
+    //   // getPublicPath: `return "//" + window.location.host + "/federation_provider"`,
+    // }),
   ],
 });
 

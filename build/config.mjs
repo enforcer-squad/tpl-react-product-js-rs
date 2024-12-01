@@ -22,6 +22,13 @@ const DevServer = {
     hot: true,
     open: true,
     port: 2333,
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:3000',
+        // pathRewrite: { '^/api': '' },
+      },
+    ],
   };
 
 const ENV = {
@@ -29,16 +36,20 @@ const ENV = {
     API_BASE_URL: '/api',
     REQUEST_TIMEOUT: 1000 * 120, // 120s
     SUB_DIR: 'static',
+    PATH: 'dist',
     PUBLIC_PATH: '/',
   },
   production: {
     API_BASE_URL: '/api',
     REQUEST_TIMEOUT: 1000 * 120, // 120s
     SUB_DIR: 'static',
+    PATH: 'dist',
     PUBLIC_PATH: '',
   },
 };
 
 const BUILD_ANALYZER = false;
 
-export {Targets,Polyfill,DevServer, ENV, BUILD_ANALYZER };
+const Preview_PORT = 8081;
+
+export {Targets,Polyfill,DevServer, ENV, BUILD_ANALYZER,Preview_PORT };

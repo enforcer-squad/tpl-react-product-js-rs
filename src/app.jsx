@@ -1,23 +1,20 @@
 import { useState, useCallback } from 'react';
-import { Button } from 'antd';
-import { sum } from '@';
-import { Button as Button11 } from '@/button';
+import { Button } from "@arco-design/web-react";
 import styles from './index.less';
 
 const App = () => {
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState(100);
   const clickHandler = useCallback(() => {
-    setResult(sum(2, 2));
+    setResult(c=>c+1);
   }, []);
 
   return (
-    <>
+    <div className={styles.content} >
       {result}
-      <Button className={styles.content} onClick={clickHandler}>
-        sum
+      <Button type='primary' onClick={clickHandler}>
+        add
       </Button>
-      <Button11 />
-    </>
+    </div>
   );
 };
 

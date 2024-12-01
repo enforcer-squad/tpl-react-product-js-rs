@@ -1,12 +1,13 @@
-import { rspack } from '@rspack/core';
+// import { rspack } from '@rspack/core';
 import { defineConfig } from '@rspack/cli';
 // import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
-// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { merge } from 'webpack-merge';
 import base from './base.mjs';
 import { subDir } from './helper.mjs';
+import { BUILD_ANALYZER } from './config.mjs';
 
-const { SwcJsMinimizerRspackPlugin } = rspack;
+// const { SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin } = rspack;
 
 const prod = defineConfig({
   mode: 'production',
@@ -19,14 +20,53 @@ const prod = defineConfig({
     moduleIds: 'deterministic',
     chunkIds: 'deterministic',
     minimize: true,
-    minimizer: [new SwcJsMinimizerRspackPlugin()],
+    // minimizer: [
+    //   new SwcJsMinimizerRspackPlugin({
+    //     minimizerOptions: {},
+    //   }),
+    //   new LightningCssMinimizerRspackPlugin({
+    //     minimizerOptions: {
+    //       errorRecovery: false,
+    //     },
+    //   }),
+    // ],
+    splitChunks: {
+      cacheGroups: {
+        common: {
+          name: 'common',
+          chunks: 'async',
+          test: /[\\/]src[\\/]/,
+          minChunks: 2,
+          minSize: 30000,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        vendor: {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          priority: 10,
+        },
+        ui: {
+          name: 'ui',
+          test: /[\\/]node_modules[\\/](@arco-design)/,
+          chunks: 'all',
+          priority: 20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
-  plugins: [
-    // new BundleAnalyzerPlugin({
-    //   analyzerPort: 8899,
-    // }),
-    // new RsdoctorRspackPlugin({}),
-  ],
+  plugins: [],
 });
+
+if (BUILD_ANALYZER) {
+  prod.plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerPort: 8899,
+    }),
+  );
+  // prod.plugins.push(new RsdoctorRspackPlugin({}));
+}
 
 export default merge(base, prod);

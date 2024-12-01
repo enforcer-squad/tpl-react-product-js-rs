@@ -25,11 +25,6 @@ p {
   height: 100%;
   background-color: #171d2e;
   overflow-y: auto;
-  // 防止viewport大小改变展示出原本背景颜色
-  .evo-layout_view {
-    background-color: #000;
-    overflow: hidden;
-  }
   &::-webkit-scrollbar {
     display: block;
     // height: 10px;
@@ -44,52 +39,4 @@ p {
     border-radius: 5px;
     background: #000;
   }
-}
-
-#wrapper {
-  width: @viewport-width;
-  height: @viewport-width;
-  // min-width: @viewport-width;
-  // min-height: @viewport-width;
-}
-
-.container {
-  display: flex;
-  .settings {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    min-width: 420px;
-    height: 100%;
-    overflow-y: auto;
-    .ant-row {
-      margin: 6px 0;
-    }
-    .ant-space-item {
-      color: #ffffff;
-      font-size: @base-font-size;
-      margin: 5px 0px;
-      &.mr5 {
-        margin-right: 5px;
-      }
-    }
-    .ant-checkbox-wrapper {
-      color: #ffffff;
-    }
-    .ant-radio-wrapper {
-      color: #ffffff;
-      font-size: @base-font-size;
-    }
-    .ant-select-selection-item {
-      font-size: @base-font-size;
-    }
-    .ant-row {
-      color: #ffffff;
-      font-size: @base-font-size;
-    }
-  }
-}
-
-.ant-select-item-option-content {
-  font-size: @base-font-size;
 }

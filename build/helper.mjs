@@ -53,32 +53,39 @@ const getCSSModuleRules = () => {
   const cssRule = {
     test: /\.global\.css$/,
     use: [cssLoader],
-    include: [resolve('./demos'), resolve('./src')],
+    include: [resolve('./src')],
     type: 'css',
   };
 
   const cssModuleRule = {
     test: /^(?!.*\.global).*\.css$/,
     use: [cssModuleLoader],
-    include: [resolve('./demos'), resolve('./src')],
+    include: [resolve('./src')],
     type: 'css/module',
+  };
+
+  const lessNodeModuleRule = {
+    test: /\.less$/,
+    use: [cssLoader, lessLoader],
+    include: [resolve('./node_modules')],
+    type: 'css',
   };
 
   const lessRule = {
     test: /\.global\.less$/,
     use: [cssLoader, lessLoader],
-    include: [resolve('./demos'), resolve('./src')],
+    include: [resolve('./src')],
     type: 'css',
   };
 
   const lessModuleRule = {
     test: /^(?!.*\.global).*\.less$/,
     use: [cssModuleLoader, lessLoader],
-    include: [resolve('./demos'), resolve('./src')],
+    include: [resolve('./src')],
     type: 'css/module',
   };
 
-  return [cssNodeModuleRule, cssRule, cssModuleRule, lessRule, lessModuleRule];
+  return [cssNodeModuleRule, cssRule, cssModuleRule, lessNodeModuleRule,lessRule, lessModuleRule];
 };
 
 export { isProd, resolve, subDir, getCSSModuleRules };
