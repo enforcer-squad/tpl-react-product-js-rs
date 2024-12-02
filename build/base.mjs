@@ -88,14 +88,16 @@ const base = defineConfig({
       filename: `index.html`,
       minify: true,
     }),
-    // new ModuleFederationPlugin({
-    //   name: 'federation_provider',
-    //   filename: 'remoteEntry.js',
-    //   shared: {
-    //     react: { singleton: true, requiredVersion: '^18.0.0' },
-    //     'react-dom': { singleton: true, requiredVersion: '^18.0.0' },
+    //  new ModuleFederationPlugin({
+    //   name: 'federation_consumer',
+    //   remotes: {
+    //     federation_provider:
+    //       'federation_provider@/federation_provider/remoteEntry.js',
     //   },
-    //   // getPublicPath: `return "//" + window.location.host + "/federation_provider"`,
+    //   shared: {
+    //     react: { singleton: true },
+    //     'react-dom': { singleton: true },
+    //   },
     // }),
   ],
 });

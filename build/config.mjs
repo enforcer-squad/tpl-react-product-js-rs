@@ -28,6 +28,11 @@ const DevServer = {
         target: 'http://localhost:3000',
         // pathRewrite: { '^/api': '' },
       },
+      {
+        context: ['/federation_provider'],
+        target: 'http://localhost:2333',
+        changeOrigin: true,
+      },
     ],
   };
 
