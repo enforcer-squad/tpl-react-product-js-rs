@@ -11,15 +11,27 @@ importers:
       '@arco-design/web-react':
         specifier: 2.65.0
         version: 2.65.0(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@enforcer-squad/rex':
+        specifier: 0.2.3
+        version: 0.2.3(react@18.3.1)
+      axios:
+        specifier: 1.7.8
+        version: 1.7.8
       core-js:
         specifier: 3.39.0
         version: 3.39.0
+      fast-memoize:
+        specifier: 2.5.2
+        version: 2.5.2
       react:
         specifier: 18.3.1
         version: 18.3.1
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
+      react-error-boundary:
+        specifier: 4.1.2
+        version: 4.1.2(react@18.3.1)
       react-router-dom:
         specifier: 6.28.0
         version: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -209,6 +221,12 @@ packages:
   '@discoveryjs/json-ext@0.5.7':
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
+
+  '@enforcer-squad/rex@0.2.3':
+    resolution: {integrity: sha512-ArGtgH17LeSBsZNlE6ec6G2bj5K1rBk6MPZHHmOTwwQEqZ+KqYET89Kbq6z0pyO22yc9Y3MyzzKI/GTyRrvVcg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: ^18.0.0
 
   '@eslint-community/eslint-utils@4.4.1':
     resolution: {integrity: sha512-s3O3waFUrMV8P/XaF/+ZTp1X9XBZW1a4B97ZnjQF2KYWaFD2A8KyFBsrsfSjEmjn3RGWAIuvlneuZm3CUK3jbA==}
@@ -1530,6 +1548,9 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
+  fast-memoize@2.5.2:
+    resolution: {integrity: sha512-Ue0LwpDYErFbmNnZSF0UH6eImUwDmogUO1jyE+JbN2gsQz/jICm1Ve7t9QT0rNSsfJt+Hs4/S3GnsDVjL4HVrw==}
+
   fast-uri@3.0.3:
     resolution: {integrity: sha512-aLrHthzCjH5He4Z2H9YZ+v6Ujb9ocRuW6ZzkJQOrTxleEijANq4v1TsaPaVG1PZcuurEzrLcWRyYBYXD5cEiaw==}
 
@@ -2776,6 +2797,11 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
+  react-error-boundary@4.1.2:
+    resolution: {integrity: sha512-GQDxZ5Jd+Aq/qUxbCm1UtzmL/s++V7zKgE8yMktJiCQXCCFZnMZh9ng+6/Ne6PjNSXH0L9CjeOEREfRnq6Duag==}
+    peerDependencies:
+      react: '>=16.13.1'
+
   react-focus-lock@2.13.2:
     resolution: {integrity: sha512-T/7bsofxYqnod2xadvuwjGKHOoL5GH7/EIPI5UyEvaU/c2CcphvGI371opFtuY/SYdbMsNiuF4HsHQ50nA/TKQ==}
     peerDependencies:
@@ -3769,6 +3795,10 @@ snapshots:
       chalk: 5.3.0
 
   '@discoveryjs/json-ext@0.5.7': {}
+
+  '@enforcer-squad/rex@0.2.3(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
 
   '@eslint-community/eslint-utils@4.4.1(eslint@9.15.0(jiti@1.21.6))':
     dependencies:
@@ -5485,6 +5515,8 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
+  fast-memoize@2.5.2: {}
+
   fast-uri@3.0.3: {}
 
   faye-websocket@0.11.4:
@@ -6725,6 +6757,11 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.3.1
       scheduler: 0.23.2
+
+  react-error-boundary@4.1.2(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.26.0
+      react: 18.3.1
 
   react-focus-lock@2.13.2(@types/react@18.3.12)(react@18.3.1):
     dependencies:
