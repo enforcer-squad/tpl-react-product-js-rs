@@ -4,7 +4,7 @@ import AddTodo from '@/components/addTodo';
 import TodoList from '@/components/todoList';
 import { useModel } from '@enforcer-squad/rex';
 import userModel from '@/store/user';
-import { intl } from '@/utils/index';
+import { intl } from '@/utils/intl';
 import style from './index.less';
 
 const Index = () => {

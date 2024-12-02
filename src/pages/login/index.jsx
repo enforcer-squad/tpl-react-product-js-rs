@@ -1,5 +1,5 @@
 import { useModel } from '@enforcer-squad/rex';
-import { intl } from '@/utils/index';
+import { intl } from '@/utils/intl';
 import userModel from '@/store/user';
 
 const test = {

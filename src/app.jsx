@@ -1,6 +1,7 @@
-import { useState, useCallback } from 'react';
-import { Button } from "@arco-design/web-react";
-import styles from './index.less';
+import { useState, useCallback, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Spin } from '@arco-design/web-react';
+import Router from '@/routes';
 
 const App = () => {
   const [result, setResult] = useState(100);
@@ -9,12 +10,22 @@ const App = () => {
   }, []);
 
   return (
-    <div className={styles.content} >
-      {result}
-      <Button type='primary' onClick={clickHandler}>
-        add
-      </Button>
-    </div>
+    <>
+    <ErrorBoundary
+          FallbackComponent={ErrorFallback}
+          onReset={() => {
+            console.log('重试');
+          }}>
+          <Suspense
+            fallback={
+              <div className="global-loading">
+                <Spin size="large" />
+              </div>
+            }>
+            <Router />
+          </Suspense>
+        </ErrorBoundary>
+    </>
   );
 };
 

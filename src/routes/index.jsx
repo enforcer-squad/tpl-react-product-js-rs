@@ -9,11 +9,9 @@ const Routes = ({ role }) => {
 };
 
 const Router = () => {
-  const { role, check } = useModel(userModel);
+  const { user, check } = useModel(userModel);
 
-  useWatch(() => {
-    check();
-  }, []);
+  useSuspense(check, { cacheKeys: ['check'] });
 
   return (
     <BrowserRouter>

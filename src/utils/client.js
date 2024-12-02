@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 默认实例
-const client = axios.create({
+const clientInstance = axios.create({
   baseURL: process.env.API_PATH,
   timeout: process.env.TIME_OUT,
   validateStatus: status => status < 500, // 配合后端小于500不算请求失败
@@ -11,14 +11,14 @@ const client = axios.create({
 });
 
 // 请求拦截器
-client.interceptors.request.use(
+clientInstance.interceptors.request.use(
   config =>
     // 根据情况自定义，如请求头发送token、展示loading
     config,
 );
 
 // 响应拦截器
-client.interceptors.response.use(
+clientInstance.interceptors.response.use(
   res => {
     // 根据情况做统一的错误处理，或后处理如隐藏loading
     // 把后端返回的完整数据抛出去
@@ -29,4 +29,6 @@ client.interceptors.response.use(
     Promise.reject(err),
 );
 
-export default client.request;
+const client = clientInstance.request;
+
+export { client };

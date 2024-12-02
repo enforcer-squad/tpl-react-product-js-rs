@@ -28,15 +28,7 @@
     "build:docs": "dumi build",
     "preview:docs": "anywhere -d ./docs_dist"
   },
-  "lint-staged": {
-    "src/**/*.js": [
-      "eslint --cache --fix",
-      "prettier --write"
-    ],
-    "src/**/*.{css,less}": [
-      "prettier --write"
-    ]
-  },
+
   "devDependencies": {
     "@commitlint/cli": "19.6.0",
     "@commitlint/config-conventional": "19.6.0",

@@ -1,4 +1,4 @@
-import { client } from '@/utils';
+import { client } from '@/utils/client';
 
 const login = params =>
   client({
