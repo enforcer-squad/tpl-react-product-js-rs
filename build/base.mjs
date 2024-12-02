@@ -1,10 +1,10 @@
 import { defineConfig } from '@rspack/cli';
 // import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 import { rspack } from '@rspack/core';
-import { isProd,  resolve,subDir, getCSSModuleRules } from './helper.mjs';
+import { isProd, resolve, subDir, getCSSModuleRules } from './helper.mjs';
 import { ENV, Polyfill } from './config.mjs';
 
-const { HtmlRspackPlugin,CopyRspackPlugin } = rspack;
+const { HtmlRspackPlugin, CopyRspackPlugin, DefinePlugin } = rspack;
 
 const base = defineConfig({
   target: 'web',
@@ -60,10 +60,8 @@ const base = defineConfig({
               rspackExperiments: {
                 import: [
                   {
-                    libraryName: '@arco-design/web-react',
-                    libraryDirectory: 'es',
-                    style: true,
-                    camel2DashComponentName: false
+                    libraryName: 'antd',
+                    style: '{{member}}/style/index.css',
                   },
                 ],
               },
@@ -75,10 +73,17 @@ const base = defineConfig({
     ],
   },
   plugins: [
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.TIME_OUT': JSON.stringify(ENV[process.env.NODE_ENV].REQUEST_TIMEOUT),
+      'process.env.API_PATH': JSON.stringify(ENV[process.env.NODE_ENV].API_BASE_URL),
+      'process.env.SUB_DIR': JSON.stringify(ENV[process.env.NODE_ENV].SUB_DIR),
+      'process.env.PUBLIC_PATH': JSON.stringify(ENV[process.env.NODE_ENV].PUBLIC_PATH),
+    }),
     new CopyRspackPlugin({
       patterns: [
         {
-          from: resolve('/public'),
+          from: resolve('/src/public'),
           to: subDir('/'),
         },
       ],

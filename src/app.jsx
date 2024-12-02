@@ -1,7 +1,15 @@
 import { useState, useCallback, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Spin } from '@arco-design/web-react';
+import { Spin } from 'antd';
 import Router from '@/routes';
+
+const ErrorFallback = ({ error, resetErrorBoundary }) => (
+  <div role="alert">
+    <p>Something went wrong:</p>
+    <pre>{error.message}</pre>
+    <button onClick={resetErrorBoundary}>Try again</button>
+  </div>
+);
 
 const App = () => {
   const [result, setResult] = useState(100);

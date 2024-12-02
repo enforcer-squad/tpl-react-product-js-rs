@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Checkbox } from '@arco-design/web-react';
+import { Checkbox } from 'antd';
 import appModel from '@/store/app';
 import { useModel } from '@enforcer-squad/rex';
 

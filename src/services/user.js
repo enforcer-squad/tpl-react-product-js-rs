@@ -7,11 +7,18 @@ const login = params =>
     data: params,
   });
 
-const checkLogin = () =>
-  client({
-    url: `/v1/user/checkLogin`,
-    method: 'get',
+const checkLogin = () =>{
+  // return client({
+  //   url: `/v1/user/checkLogin`,
+  //   method: 'get',
+  // });
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({name: 'admin', role: 'admin', status: 1, userId: 1,isFirstLogin: 1})
+    }, 1000);
   });
+}
+  
 
 const logout = () =>
   client({

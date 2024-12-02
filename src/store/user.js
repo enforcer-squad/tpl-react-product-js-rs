@@ -9,6 +9,8 @@ const model = createModel({
   isFirstLogin: 0,
   async check() {
     const res = await checkLogin();
+    console.log('res', res);
+    
     model.name = res.name;
     model.role = res.role;
     model.status = res.status;
