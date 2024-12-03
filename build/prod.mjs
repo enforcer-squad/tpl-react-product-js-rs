@@ -49,7 +49,7 @@ const prod = defineConfig({
         },
         ui: {
           name: 'ui',
-          test: /[\\/]node_modules[\\/](@arco-design)/,
+          test: /[\\/]node_modules[\\/](antd|@ant-design|rc-.*|tinycolor2|async-validator)/,
           chunks: 'all',
           priority: 20,
           reuseExistingChunk: true,

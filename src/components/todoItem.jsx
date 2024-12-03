@@ -1,7 +1,6 @@
-import { memo } from 'react';
 import { Checkbox } from 'antd';
 import appModel from '@/store/app';
-import { useModel } from '@enforcer-squad/rex';
+import { useModel,reactiveMemo } from '@enforcer-squad/rex';
 
 const TodoItem = ({ todo }) => {
   console.log('TodoItem render', todo);
@@ -23,4 +22,4 @@ const TodoItem = ({ todo }) => {
   );
 };
 
-export default memo(TodoItem);
+export default reactiveMemo(TodoItem);

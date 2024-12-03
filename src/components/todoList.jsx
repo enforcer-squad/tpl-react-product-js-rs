@@ -1,6 +1,7 @@
-import { memo, useState } from 'react';
+import {  useState } from 'react';
 import TodoItem from '@/components/todoItem';
 import { useTodos } from '@/store/selectors';
+import { reactiveMemo } from '@enforcer-squad/rex';
 
 const TodoList = () => {
   const [state, setState] = useState(1);
@@ -21,4 +22,4 @@ const TodoList = () => {
   );
 };
 
-export default memo(TodoList);
+export default reactiveMemo(TodoList);

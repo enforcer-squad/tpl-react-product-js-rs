@@ -61,7 +61,7 @@ const base = defineConfig({
                 import: [
                   {
                     libraryName: 'antd',
-                    style: '{{member}}/style/index.css',
+                    style: true,
                   },
                 ],
               },

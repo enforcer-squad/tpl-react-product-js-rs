@@ -1,7 +1,6 @@
-import { memo } from 'react';
 import { Radio } from 'antd';
 import appModel, { filters } from '@/store/app';
-import { useModel } from '@enforcer-squad/rex';
+import { useModel,reactiveMemo } from '@enforcer-squad/rex';
 
 const FilterRow = () => {
   console.log('FilterRow render');
@@ -25,4 +24,4 @@ const FilterRow = () => {
   );
 };
 
-export default memo(FilterRow);
+export default reactiveMemo(FilterRow);

@@ -1,7 +1,7 @@
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { Input, Button } from 'antd';
 import appModel from '@/store/app';
-import { useModel } from '@enforcer-squad/rex';
+import { useModel,reactiveMemo } from '@enforcer-squad/rex';
 
 const AddTodo = () => {
   console.log('AddTodo render');
@@ -28,4 +28,4 @@ const AddTodo = () => {
   );
 };
 
-export default memo(AddTodo);
+export default reactiveMemo(AddTodo);
