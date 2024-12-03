@@ -19,6 +19,15 @@
   "author": "enforcer.a06@gmail.com",
   "license": "MIT",
   "packageManager": "pnpm@9.13.0",
+  "lint-staged": {
+    "src/**/*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{css,less}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "prepare": "husky",
     "dev": "cross-env NODE_ENV=development rspack serve --config ./build/dev.mjs",
